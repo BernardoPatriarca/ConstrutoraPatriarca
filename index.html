@@ -1,0 +1,2451 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Construtora Patriarca - Construindo Sonhos desde 2000</title>
+    <link rel="icon" href="https://i.imgur.com/VwmgShm.png" type="image/png">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --dark-red: #8B0000;
+            --medium-red: #B22222;
+            --light-red: #CD5C5C;
+            --gold: #D4AF37;
+            --light-gold: #F1E5AC;
+            --dark: #1A1A1A;
+            --light-gray: #F8F9FA;
+            --white: #FFFFFF;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --shadow-sm: 0 2px 15px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 5px 25px rgba(0, 0, 0, 0.15);
+            --shadow-lg: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--dark);
+            background-color: var(--light-gray);
+            overflow-x: hidden;
+            line-height: 1.7;
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--dark-red);
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            color: #555;
+        }
+
+        a {
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        /* Navbar */
+        .navbar {
+            background: linear-gradient(135deg, var(--dark-red), var(--medium-red));
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            backdrop-filter: blur(8px);
+            background-color: rgba(139, 0, 0, 0.95);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar.scrolled {
+            padding: 0.8rem 0;
+            background: rgba(139, 0, 0, 0.98);
+        }
+
+        .navbar-brand {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            color: white !important;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .navbar-brand:hover {
+            transform: translateY(-2px);
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .navbar-brand img {
+            height: 42px;
+            margin-right: 12px;
+            transition: var(--transition);
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        }
+
+        .navbar-brand:hover img {
+            transform: rotate(10deg);
+        }
+
+        .nav-link {
+            color: white !important;
+            font-weight: 600;
+            margin: 0 8px;
+            position: relative;
+            padding: 10px 16px !important;
+            border-radius: 8px;
+            transition: var(--transition);
+            letter-spacing: 0.5px;
+            font-size: 0.95rem;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background-color: var(--gold);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-3px);
+        }
+
+        .nav-link:hover::before {
+            width: 60%;
+        }
+
+        .nav-link.active {
+            background-color: var(--gold);
+            color: var(--dark-red) !important;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            font-weight: 700;
+        }
+
+        .nav-link.active::before {
+            display: none;
+        }
+
+        .contact-icon {
+            color: white;
+            font-size: 1.6rem;
+            transition: var(--transition);
+            margin-left: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-icon:hover {
+            color: var(--gold);
+            transform: scale(1.15) rotate(10deg);
+            background-color: rgba(255, 255, 255, 0.2);
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.7);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            height: 100vh;
+            min-height: 700px;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+            animation: fadeInDown 1s ease-out;
+            color: white;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+            animation: fadeIn 1.5s ease-out 0.5s both;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            letter-spacing: 0.5px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-highlight {
+            color: var(--gold);
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background-color: rgba(212, 175, 55, 0.3);
+            z-index: -1;
+            transform: skewX(-15deg);
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold), var(--light-gold));
+            border: none;
+            color: var(--dark-red);
+            font-weight: 700;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            animation: pulse 2s infinite 1.5s;
+            margin: 10px;
+            box-shadow: var(--shadow-md);
+            font-size: 1.1rem;
+            z-index: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-gold::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--light-gold), var(--gold));
+            opacity: 0;
+            z-index: -1;
+            transition: var(--transition);
+        }
+
+        .btn-gold:hover {
+            color: var(--dark-red);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-gold:hover::before {
+            opacity: 1;
+        }
+
+        .btn-outline-gold {
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            font-weight: 700;
+            padding: 13px 30px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+            background-color: transparent;
+            position: relative;
+            overflow: hidden;
+            margin: 10px;
+            box-shadow: var(--shadow-sm);
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-outline-gold::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--gold), var(--light-gold));
+            opacity: 0;
+            z-index: -1;
+            transition: var(--transition);
+        }
+
+        .btn-outline-gold:hover {
+            color: var(--dark-red);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: transparent;
+        }
+
+        .btn-outline-gold:hover::before {
+            opacity: 1;
+        }
+
+        /* Sections */
+        .section-title {
+            color: var(--dark-red);
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 2.2rem;
+            text-align: center;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--dark-red), var(--gold));
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+
+        .section-title:hover::after {
+            width: 150px;
+            background: linear-gradient(90deg, var(--gold), var(--dark-red));
+        }
+
+        .section-subtitle {
+            color: #666;
+            font-size: 1.25rem;
+            margin-bottom: 3.5rem;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        .section-padding {
+            padding: 7rem 0;
+            position: relative;
+        }
+
+        .section-dark {
+            background-color: var(--dark);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-dark::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover fixed;
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        .section-dark .section-title {
+            color: var(--gold);
+        }
+
+        .section-dark .section-title::after {
+            background: linear-gradient(90deg, var(--gold), var(--light-gold));
+        }
+
+        .section-dark p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .section-gradient {
+            background: linear-gradient(135deg, var(--dark-red), var(--medium-red));
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover fixed;
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        .section-gradient .section-title {
+            color: white;
+        }
+
+        .section-gradient .section-title::after {
+            background: linear-gradient(90deg, var(--gold), var(--light-gold));
+        }
+
+        /* About Section */
+        .about-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover fixed;
+            opacity: 0.08;
+            z-index: 0;
+        }
+
+        .about-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .lead {
+            font-size: 1.25rem;
+            font-weight: 400;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Cards */
+        .card {
+            border: none;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            margin-bottom: 2rem;
+            height: 100%;
+            background-color: white;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-15px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-img-top {
+            height: 250px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .card:hover .card-img-top {
+            transform: scale(1.08);
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        .card-title {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark-red);
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            font-size: 1.6rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+
+        .card-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--gold);
+            transition: var(--transition);
+        }
+
+        .card:hover .card-title::after {
+            width: 80px;
+        }
+
+        .card-text {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .project-status {
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-bottom: 1.2rem;
+            letter-spacing: 0.5px;
+        }
+
+        .status-planning {
+            background-color: #FFD700;
+            color: #333;
+        }
+
+        .status-ongoing {
+            background-color: #4682B4;
+            color: white;
+        }
+
+        .status-completed {
+            background-color: #32CD32;
+            color: white;
+        }
+
+        .status-suspended {
+            background-color: #A9A9A9;
+            color: white;
+        }
+
+        .project-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .project-detail {
+            text-align: center;
+            flex: 1;
+            min-width: 100px;
+        }
+
+        .project-detail i {
+            font-size: 1.6rem;
+            color: var(--dark-red);
+            margin-bottom: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .card:hover .project-detail i {
+            color: var(--gold);
+            transform: scale(1.1);
+        }
+
+        .project-detail span {
+            display: block;
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 0.3rem;
+        }
+
+        .project-detail strong {
+            color: var(--dark);
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+
+        .badge-destaque {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--gold), var(--light-gold));
+            color: var(--dark-red);
+            font-weight: 800;
+            padding: 8px 20px;
+            border-radius: 50px;
+            z-index: 2;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .card:hover .badge-destaque {
+            transform: rotate(10deg) scale(1.1);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Team Cards */
+        .team-card {
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            border-radius: 16px;
+            background-color: white;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--dark-red), var(--gold));
+            transition: var(--transition);
+            opacity: 0;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .team-card:hover::before {
+            opacity: 1;
+            height: 8px;
+        }
+
+        .team-img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--light-gray);
+            margin: 0 auto 1.5rem;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-card:hover .team-img {
+            transform: scale(1.05);
+            border-color: var(--gold);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .team-name {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark-red);
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+            transition: var(--transition);
+        }
+
+        .team-card:hover .team-name {
+            color: var(--medium-red);
+        }
+
+        .team-position {
+            color: var(--medium-red);
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .team-bio {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .team-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+            color: var(--dark-red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            font-size: 1.1rem;
+        }
+
+        .team-social a:hover {
+            background: linear-gradient(135deg, var(--dark-red), var(--medium-red));
+            color: white;
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.3);
+        }
+
+        /* Gallery */
+        .gallery-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            height: 320px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .gallery-container:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-container:hover .gallery-img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem;
+            background: linear-gradient(transparent, rgba(139, 0, 0, 0.95));
+            color: white;
+            transition: var(--transition);
+        }
+
+        .gallery-container:hover .gallery-overlay {
+            bottom: 0;
+        }
+
+        .gallery-title {
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            font-size: 1.4rem;
+        }
+
+        .gallery-desc {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Contact */
+        .contact-info {
+            text-align: center;
+            padding: 2.8rem 1.8rem;
+            border-radius: 16px;
+            background-color: white;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--dark-red), var(--gold));
+            transition: var(--transition);
+            opacity: 0;
+        }
+
+        .contact-info:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .contact-info:hover::before {
+            opacity: 1;
+            height: 8px;
+        }
+
+        .contact-icon-box {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--dark-red), var(--medium-red));
+            color: white;
+            font-size: 2.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info:hover .contact-icon-box {
+            transform: rotate(15deg) scale(1.1);
+            background: linear-gradient(135deg, var(--gold), var(--light-gold));
+            color: var(--dark-red);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        .contact-title {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark-red);
+            font-weight: 800;
+            margin-bottom: 1.2rem;
+            font-size: 1.4rem;
+            transition: var(--transition);
+        }
+
+        .contact-info:hover .contact-title {
+            color: var(--medium-red);
+        }
+
+        .contact-text {
+            color: #666;
+            margin-bottom: 0;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .contact-text a {
+            color: var(--dark-red);
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 600;
+            position: relative;
+        }
+
+        .contact-text a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--gold);
+            transition: var(--transition);
+        }
+
+        .contact-text a:hover {
+            color: var(--medium-red);
+            text-decoration: none;
+        }
+
+        .contact-text a:hover::after {
+            width: 100%;
+        }
+
+        /* Form */
+        .form-control {
+            padding: 1rem 1.25rem;
+            border-radius: 12px;
+            background-color: #efe3de;
+            border: 1px solid #e0e0e0;
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+            font-size: 1rem;
+            box-shadow: none;
+            line-height: 1.6;
+        }
+
+        .form-control:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 0.25rem rgba(212, 175, 55, 0.25);
+            transform: translateY(-2px);
+        }
+
+        textarea.form-control {
+            min-height: 180px;
+            resize: vertical;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, var(--dark-red), var(--medium-red));
+            border: none;
+            color: white;
+            font-weight: 700;
+            padding: 1rem 2.2rem;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+            width: 100%;
+            box-shadow: var(--shadow-md);
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-submit::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--medium-red), var(--light-red));
+            opacity: 0;
+            z-index: -1;
+            transition: var(--transition);
+        }
+
+        .btn-submit:hover {
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-submit:hover::before {
+            opacity: 1;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 6rem 0 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, var(--gold), var(--dark-red));
+        }
+
+        .footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            color: white;
+            letter-spacing: 1.5px;
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .footer-logo:hover {
+            color: var(--gold);
+            transform: translateY(-3px);
+            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .footer-logo img {
+            height: 45px;
+            margin-right: 12px;
+            transition: var(--transition);
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .footer-logo:hover img {
+            transform: rotate(15deg);
+        }
+
+        .footer-about {
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .footer-links h4 {
+            color: var(--gold);
+            margin-bottom: 1.8rem;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            padding-bottom: 0.6rem;
+        }
+
+        .footer-links h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--gold);
+            transition: var(--transition);
+        }
+
+        .footer-links h4:hover::after {
+            width: 80px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+            font-size: 1rem;
+            display: inline-block;
+        }
+
+        .footer-links a::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gold);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+            padding-left: 30px;
+            transform: translateX(5px);
+        }
+
+        .footer-links a:hover::before {
+            opacity: 1;
+            left: 5px;
+        }
+
+        .social-icons {
+            margin: 2rem 0;
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-icons a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--gold), var(--light-gold));
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 0;
+        }
+
+        .social-icons a:hover {
+            color: var(--dark-red);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        .social-icons a:hover::before {
+            opacity: 1;
+        }
+
+        .social-icons i {
+            position: relative;
+            z-index: 1;
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            margin-top: 3.5rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, var(--dark-red), var(--medium-red));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            box-shadow: var(--shadow-md);
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            border: none;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: linear-gradient(135deg, var(--gold), var(--light-gold));
+            color: var(--dark-red);
+            transform: translateY(-8px) scale(1.1);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Animations */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 20px rgba(212, 175, 55, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes confetti {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(1000px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Responsividade */
+        @media (max-width: 1200px) {
+            .hero-content h1 {
+                font-size: 4rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 3.2rem;
+            }
+
+            .hero-content p {
+                font-size: 1.3rem;
+            }
+
+            .section-padding {
+                padding: 6rem 0;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 1.7rem;
+            }
+
+            .navbar-nav {
+                margin-top: 1.2rem;
+                background: rgba(139, 0, 0, 0.98);
+                padding: 1.2rem;
+                border-radius: 12px;
+                box-shadow: var(--shadow-md);
+            }
+
+            .nav-link {
+                margin: 0.5rem 0;
+                padding: 0.8rem 1.2rem !important;
+            }
+
+            .section-padding {
+                padding: 5rem 0;
+            }
+
+            .footer-logo {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-content h1 {
+                font-size: 2.2rem;
+                letter-spacing: 2px;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .btn-gold,
+            .btn-outline-gold {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+                margin: 0.5rem 0;
+                width: 100%;
+                max-width: 280px;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .section-padding {
+                padding: 4rem 0;
+            }
+
+            .footer-logo {
+                font-size: 1.8rem;
+            }
+
+            .footer-links h4 {
+                font-size: 1.2rem;
+            }
+
+            .social-icons a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+
+            .back-to-top {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        .footer-links .d-flex {
+            flex-wrap: wrap;
+        }
+
+        .footer-links .d-flex i {
+            flex-shrink: 0;
+            width: 20px;
+            text-align: center;
+        }
+
+        .footer-links .d-flex> :not(i) {
+            flex: 1;
+            min-width: 0;
+        }
+
+        /* Adicione ao seu arquivo CSS */
+        #allProjectsModal .modal-body {
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        #allProjectsModal .card {
+            transition: transform 0.3s;
+        }
+
+        #allProjectsModal .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Adicione no seu <style> */
+        .disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #5d8f69, #a6e3a6) !important;
+            border: none;
+            color: white;
+            font-weight: 700;
+            padding: 1rem 2.2rem;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+            width: 100%;
+            box-shadow: var(--shadow-md);
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-success::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--medium-red), var(--light-red));
+            opacity: 0;
+            z-index: -1;
+            transition: var(--transition);
+        }
+
+        .btn-success:hover {
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-success:hover::before {
+            opacity: 1;
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #dc3545, #c82333) !important;
+            border: none;
+            color: white;
+            font-weight: 700;
+            padding: 1rem 2.2rem;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+            width: 100%;
+            box-shadow: var(--shadow-md);
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-danger::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--medium-red), var(--light-red));
+            opacity: 0;
+            z-index: -1;
+            transition: var(--transition);
+        }
+
+        .btn-danger:hover {
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-danger:hover::before {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Top Bar/Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="https://i.imgur.com/VwmgShm.png" alt="Logo Construtora Patriarca"> PATRIARCA
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projetos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#team">Equipe</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery">Galeria</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contato</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center ms-lg-3">
+                    <a href="tel:+5546991064560" class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-content container">
+            <h1 data-aos="fade-down" data-aos-duration="1000">CONSTRUTORA <span class="hero-highlight">PATRIARCA</span>
+            </h1>
+            <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">Construindo sonhos e transformando vidas
+                desde 2012. Excelência em construção civil com qualidade e inovação.</p>
+            <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
+                <a href="#projects" class="btn btn-gold btn-lg" id="mainButton">
+                    <i class="fas fa-building me-2"></i>Nossos Projetos
+                </a>
+                <a href="#contact" class="btn btn-outline-gold btn-lg">
+                    <i class="fas fa-envelope me-2"></i>Fale Conosco
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section section-padding">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
+                    <h2 class="section-title">Nossa História</h2>
+                    <p>Fundada em 2012, a Construtora Patriarca tem como missão transformar sonhos em realidade através
+                        da construção civil, com foco em qualidade e satisfação dos clientes.</p>
+
+                    <p>Com mais de 10 anos de experiência, consolidamos nossa reputação como uma empresa sólida e
+                        confiável, destacando-nos pelo comprometimento em cada projeto.</p>
+
+                    <p>Contamos com uma equipe qualificada de engenheiros e arquitetos que utilizam técnicas modernas
+                        para garantir excelência em construções residenciais, comerciais e industriais.</p>
+                    <div style="width: 100%;">
+                        <a href="#projects" class="btn btn-gold mt-3" style="max-width: unset !important;">Conheça
+                            Nossos Projetos</a>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="Obra em andamento" class="img-fluid rounded shadow-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section-padding bg-light">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Nossos Projetos</h2>
+                <p class="section-subtitle">Conheça alguns dos nossos principais trabalhos realizados</p>
+            </div>
+
+            <div class="row" id="projects-container">
+                <!-- Os projetos serão carregados dinamicamente aqui via JavaScript -->
+            </div>
+
+            <div class="text-center mt-4" data-aos="fade-up">
+                <a href="#" class="btn btn-gold">Ver Todos os Projetos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="section-padding section-dark">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Nossa Equipe</h2>
+                <p class="section-subtitle">Profissionais qualificados comprometidos com a excelência</p>
+            </div>
+
+            <div class="row" id="team-container">
+                <!-- Os Membros da equipe serão carregados dinamicamente aqui via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section-padding">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Galeria de Fotos</h2>
+                <p class="section-subtitle">Conheça nossos projetos através de imagens</p>
+            </div>
+
+            <div class="row g-4" id="gallery-container">
+                <!-- As fotos da galeria serão carregados dinamicamente aqui via JavaScript -->
+            </div>
+
+            <div class="text-center mt-5" data-aos="fade-up">
+                <a href="#" class="btn btn-gold">Ver Galeria Completa</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding section-gradient">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Entre em Contato</h2>
+                <p class="section-subtitle" style="color: #fff !important">Estamos prontos para realizar seu projeto</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="contact-info">
+                        <div class="contact-icon-box">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h4 class="contact-title">Endereço</h4>
+                        <p class="contact-text">
+                            Rua Jaciretã, 685<br>
+                            Bairro Parzianello<br>
+                            Pato Branco - PR<br>
+                            CEP: 85504-440
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="contact-info">
+                        <div class="contact-icon-box">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <h4 class="contact-title">Telefones</h4>
+                        <p class="contact-text">
+                            <a href="tel:+5546991064560">(46) 99106-4560</a><br>
+                            <a href="tel:+5546991064560">(46) 99106-4560</a><br><br>
+                            Horário de atendimento:<br>
+                            Seg-Sex: 8h às 18h
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="contact-info">
+                        <div class="contact-icon-box">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h4 class="contact-title">E-mail</h4>
+                        <p class="contact-text">
+                            <a href="mailto:renepatriarca@hotmail.com">renepatriarca@hotmail.com</a><br><br>
+                            Para orçamentos:<br>
+                            <a href="mailto:renepatriarca@hotmail.com">renepatriarca@hotmail.com</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mb-5" data-aos="fade-up" style="padding-top: 120px;">
+                <h2 class="section-title">Envie-nos seu pedido</h2>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-lg-8 mx-auto" data-aos="fade-up">
+                    <form id="contactForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="nome" placeholder="Seu Nome" required>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" class="form-control" id="email" placeholder="Seu E-mail" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" id="telefone" class="form-control" placeholder="Telefone" required>
+                            </div>
+                            <div class="col-md-6">
+                                <select class="form-control" id="assunto" required>
+                                    <option value="" disabled selected>Assunto</option>
+                                    <option value="Orçamento">Orçamento</option>
+                                    <option value="Dúvida">Dúvida</option>
+                                    <option value="Elogio">Elogio</option>
+                                    <option value="Reclamação">Reclamação</option>
+                                    <option value="Outro">Outro</option>
+                                </select>
+                            </div>
+                        </div>
+                        <textarea class="form-control" id="mensagem" rows="5" placeholder="Sua Mensagem"
+                            required></textarea>
+                        <button type="submit" class="btn-submit mt-4">
+                            <i class="fas fa-paper-plane me-2"></i>Enviar Mensagem
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <div class="footer-logo">
+                        <img src="https://i.imgur.com/VwmgShm.png" alt="Logo Construtora Patriarca"> PATRIARCA
+                    </div>
+                    <p class="footer-about">Construindo sonhos e transformando vidas desde 2012. Excelência em
+                        construção civil com qualidade e inovação.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-5 mb-md-0">
+                    <div class="footer-links">
+                        <h4>Links</h4>
+                        <ul>
+                            <li><a href="#home">Início</a></li>
+                            <li><a href="#about">Sobre Nós</a></li>
+                            <li><a href="#projects">Projetos</a></li>
+                            <li><a href="#team">Equipe</a></li>
+                            <li><a href="#gallery">Galeria</a></li>
+                            <li><a href="#contact">Contato</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+                    <div class="footer-links">
+                        <h4>Serviços</h4>
+                        <ul>
+                            <li><a href="#">Construção Civil</a></li>
+                            <li><a href="#">Reformas</a></li>
+                            <li><a href="#">Projetos Arquitetônicos</a></li>
+                            <li><a href="#">Regularização</a></li>
+                            <li><a href="#">Consultoria</a></li>
+                            <li><a href="#">Gerenciamento</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-links">
+                        <h4>Contato</h4>
+                        <ul>
+                            <li>
+                                <div class="d-flex align-items-start mb-2">
+                                    <i class="fas fa-phone mt-1 me-2"></i>
+                                    <a href="tel:+5546991064560" target="_blank">(46) 99106-4560</a>
+
+                                </div>
+                            </li>
+                            <li>
+                                <div class="d-flex align-items-start mb-2">
+                                    <i class="fas fa-envelope mt-1 me-2"></i>
+                                    <a href="mailto:renepatriarca@hotmail.com">renepatriarca@hotmail.com</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="d-flex align-items-start mb-2">
+                                    <i class="fas fa-map-marker-alt mt-1 me-2"></i>
+                                    <span style="color: rgba(255, 255, 255, 0.8);">Rua Jaciretã 685, Parzianello,
+                                        PB</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="d-flex align-items-start">
+                                    <i class="fas fa-clock mt-1 me-2"></i>
+                                    <span style="color: rgba(255, 255, 255, 0.8);">Seg-Sex: 8h às 18h</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Construtora Patriarca. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#home" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Modal para todos os projetos -->
+    <div class="modal fade" id="allProjectsModal" tabindex="-1" aria-labelledby="allProjectsModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="allProjectsModalLabel">Todos os Nossos Projetos</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row" id="all-projects-container">
+                        <!-- Projetos serão carregados aqui via JavaScript -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8/jquery.inputmask.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- AOS (Animate On Scroll) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Supabase JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Script principal -->
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Máscara para telefone
+        $(document).ready(function () {
+            $('#telefone').inputmask('(99) 99999-9999');
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Back to top button
+        window.addEventListener('scroll', function () {
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('active');
+            } else {
+                backToTop.classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+
+                    // Fecha o menu mobile se estiver aberto
+                    const navbarCollapse = document.querySelector('.navbar-collapse');
+                    if (navbarCollapse.classList.contains('show')) {
+                        const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+                        bsCollapse.hide();
+                    }
+                }
+            });
+        });
+
+        // Ativa o link ativo na navegação
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', function () {
+            let current = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+
+                if (pageYOffset >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Função para criar confetes
+        function createConfetti() {
+            const colors = ['#D4AF37', '#E8D9A0', '#FFFFFF', '#8B0000', '#B22222'];
+
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = Math.random() * 10 + 5 + 'px';
+                confetti.style.height = Math.random() * 10 + 5 + 'px';
+                confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+                confetti.style.animationDelay = Math.random() * 2 + 's';
+                document.body.appendChild(confetti);
+
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+
+        // Formulário de contato
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
+            submitBtn.disabled = true;
+
+            setTimeout(() => {
+                submitBtn.innerHTML = '<i class="fas fa-check me-2"></i>Mensagem Enviada!';
+                createConfetti();
+
+                setTimeout(() => {
+                    this.reset();
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }, 3000);
+            }, 1500);
+        });
+
+        // Configuração do Supabase
+        const supabaseUrl = 'https://flrprpaswimtggikhbfv.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZscnBycGFzd2ltdGdnaWtoYmZ2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQwNjU1MzIsImV4cCI6MjA1OTY0MTUzMn0.KIlghqbZMcU-nbEFO7hC8jTPfeb0A1MLJv2so5Gs2ho';
+
+        // Verifica se o Supabase já foi carregado
+        if (typeof supabase === 'undefined') {
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+            script.onload = initializeApp;
+            document.head.appendChild(script);
+        } else {
+            initializeApp();
+        }
+
+        // Função para formatar a data
+        function formatarData(data) {
+            if (!data) return '';
+            const date = new Date(data);
+            return date.toLocaleDateString('pt-BR');
+        }
+
+        // Função para determinar a classe de status
+        function getStatusClass(status) {
+            switch (status?.toLowerCase()) {
+                case 'concluído':
+                    return 'status-completed';
+                case 'em andamento':
+                    return 'status-ongoing';
+                case 'planejamento':
+                    return 'status-planning';
+                default:
+                    return '';
+            }
+        }
+
+        // Função para obter a URL da imagem principal de um projeto
+        async function getProjectImageUrl(supabaseClient, projectId) {
+            try {
+                const { data: gallery, error } = await supabaseClient
+                    .from('galeria_fotos')
+                    .select('foto_url')
+                    .eq('projeto_id', projectId)
+                    .order('ordem_exibicao', { ascending: true })
+                    .limit(1);
+
+                if (error) throw error;
+                return gallery[0]?.foto_url || 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80';
+            } catch (error) {
+                console.error('Erro ao buscar imagem do projeto:', error);
+                return 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80';
+            }
+        }
+
+        // Função para carregar os membros da equipe do banco de dados
+        async function loadTeamMembers(supabaseClient) {
+            try {
+                const { data: teamMembers, error } = await supabaseClient
+                    .from('funcionarios') // Supondo que sua tabela se chame 'funcionarios'
+                    .select('*')
+                    .eq('ativo', true) // Filtra apenas membros ativos
+                    .order('ordem_exibicao', { ascending: true }); // Ordena pela ordem de exibição
+
+                if (error) throw error;
+                return teamMembers;
+            } catch (error) {
+                console.error('Erro ao carregar membros da equipe:', error);
+                return null;
+            }
+        }
+
+        // Adicione esta função junto com as outras funções do Supabase
+        async function loadGalleryPhotos(supabaseClient) {
+            try {
+                const { data: photos, error } = await supabaseClient
+                    .from('galeria_fotos')
+                    .select('*')
+                    .order('ordem_exibicao', { ascending: true });
+
+                if (error) throw error;
+                return photos;
+            } catch (error) {
+                console.error('Erro ao carregar fotos da galeria:', error);
+                return null;
+            }
+        }
+
+        // Função para renderizar os membros da equipe
+        function renderTeamMembers(teamMembers) {
+            const container = document.getElementById('team-container');
+
+            if (!teamMembers || teamMembers.length === 0) {
+                container.innerHTML = '<div class="col-12 text-center"><p>Nossa equipe está em formação. Volte em breve!</p></div>';
+                return;
+            }
+
+            let html = '';
+            let delay = 100;
+
+            teamMembers.forEach((member) => {
+                html += `
+            <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="${delay}">
+                <div class="team-card">
+                    <img src="${member.foto_url || 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=687&q=80'}"
+                        class="team-img" alt="${member.nome}">
+                    <h4 class="team-name">${member.nome}</h4>
+                    <p class="team-position" style="color: #333 !important;">${member.cargo} - ${member.departamento}</p>
+                    <p class="team-bio" style="color: #555 !important;">${member.bio || 'Profissional dedicado e comprometido com a excelência.'}</p>
+                </div>
+            </div>
+        `;
+                delay += 100;
+            });
+
+            container.innerHTML = html;
+        }
+
+        // Adicione esta função junto com as outras funções de renderização
+        function renderGalleryPhotos(photos) {
+            const container = document.getElementById('gallery-container');
+
+            if (!photos || photos.length === 0) {
+                container.innerHTML = '<div class="col-12 text-center"><p>Nenhuma foto disponível na galeria.</p></div>';
+                return;
+            }
+
+            // Pega apenas as 3 primeiras fotos
+            const limitedPhotos = photos.slice(0, 3);
+            let html = '';
+            let delay = 100;
+
+            limitedPhotos.forEach((photo) => {
+                html += `
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="${delay}">
+                <div class="gallery-container">
+                    <img src="${photo.foto_url}" class="gallery-img" alt="${photo.descricao || 'Foto da galeria'}">
+                    <div class="gallery-overlay">
+                        <h5 class="gallery-title">${photo.descricao || 'Projeto'}</h5>
+                        <p class="gallery-desc">${photo.descricao || 'Imagem do nosso portfólio'}</p>
+                    </div>
+                </div>
+            </div>
+        `;
+                delay += 100;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function renderAllGalleryPhotos(photos) {
+            const container = document.getElementById('all-projects-container'); // Reutilizando o mesmo container
+
+            if (!photos || photos.length === 0) {
+                container.innerHTML = '<div class="col-12 text-center"><p>Nenhuma foto disponível na galeria.</p></div>';
+                return;
+            }
+
+            let html = '';
+
+            photos.forEach((photo) => {
+                html += `
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="gallery-container" style="height: 280px;">
+                    <img src="${photo.foto_url}" class="gallery-img" alt="${photo.descricao || 'Foto da galeria'}">
+                    <div class="gallery-overlay">
+                        <h5 class="gallery-title">${photo.descricao || 'Projeto'}</h5>
+                        <p class="gallery-desc">${photo.descricao || 'Imagem do nosso portfólio'}</p>
+                    </div>
+                </div>
+            </div>
+        `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        async function loadProjectsWithImages(supabaseClient) {
+            try {
+                const { data: projects, error: projectsError } = await supabaseClient
+                    .from('projetos')
+                    .select('*')
+                    .order('data_conclusao', { ascending: false });
+
+                if (projectsError) throw projectsError;
+                if (!projects || projects.length === 0) return [];
+
+                const projectsWithImages = [];
+
+                for (const project of projects) {
+                    try {
+                        const imageUrl = await getProjectImageUrl(supabaseClient, project.id);
+                        projectsWithImages.push({ ...project, imageUrl });
+                    } catch (error) {
+                        console.error(`Erro ao carregar imagem para projeto ${project.id}:`, error);
+                        projectsWithImages.push({
+                            ...project,
+                            imageUrl: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'
+                        });
+                    }
+                }
+
+                return projectsWithImages;
+            } catch (error) {
+                console.error('Erro ao carregar projetos com imagens:', error);
+                return null;
+            }
+        }
+
+        // Função para renderizar os projetos na tela principal (apenas 3)
+        async function renderMainProjects(projectsWithImages) {
+            const container = document.getElementById('projects-container');
+
+            if (!projectsWithImages || projectsWithImages.length === 0) {
+                container.innerHTML = '<div class="col-12 text-center"><p>Nenhum projeto encontrado.</p></div>';
+                return;
+            }
+
+            // Pega apenas os 3 primeiros projetos
+            const limitedProjects = projectsWithImages.slice(0, 3);
+            let html = '';
+            let delay = 100;
+
+            limitedProjects.forEach((project) => {
+                html += `
+            <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="${delay}">
+                <div class="card">
+                    ${project.destaque ? '<span class="badge-destaque">Destaque</span>' : ''}
+                    <img src="${project.imageUrl}"
+                        class="card-img-top" alt="${project.titulo || 'Projeto'}">
+                    <div class="card-body">
+                        <h5 class="card-title">${project.titulo || 'Projeto'}</h5>
+                        <span class="project-status ${getStatusClass(project.status)}">${project.status || 'Sem status'}</span>
+                        <p class="card-text">${project.descricao || 'Descrição não disponível'}</p>
+                        <div class="project-details">
+                            <div class="project-detail">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Localização</span>
+                                <strong>${project.localizacao || 'Não informado'}</strong>
+                            </div>
+                            <div class="project-detail">
+                                <i class="fas fa-ruler-combined"></i>
+                                <span>Área</span>
+                                <strong>${project.area_construida ? project.area_construida.toLocaleString('pt-BR') + 'm²' : 'Não informado'}</strong>
+                            </div>
+                            <div class="project-detail">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>${project.status === 'Concluído' ? 'Ano' : 'Previsão'}</span>
+                                <strong>${formatarData(project.data_conclusao) || 'Não informado'}</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+                delay += 100;
+            });
+
+            container.innerHTML = html;
+        }
+
+        // Função para renderizar todos os projetos no modal
+        function renderAllProjects(projectsWithImages) {
+            const container = document.getElementById('all-projects-container');
+
+            if (!projectsWithImages || projectsWithImages.length === 0) {
+                container.innerHTML = '<div class="col-12 text-center"><p>Nenhum projeto encontrado.</p></div>';
+                return;
+            }
+
+            let html = '';
+
+            projectsWithImages.forEach((project) => {
+                html += `
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
+                    ${project.destaque ? '<span class="badge-destaque">Destaque</span>' : ''}
+                    <img src="${project.imageUrl}"
+                        class="card-img-top" alt="${project.titulo || 'Projeto'}">
+                    <div class="card-body">
+                        <h5 class="card-title">${project.titulo || 'Projeto'}</h5>
+                        <span class="project-status ${getStatusClass(project.status)}">${project.status || 'Sem status'}</span>
+                        <p class="card-text">${project.descricao || 'Descrição não disponível'}</p>
+                        <div class="project-details">
+                            <div class="project-detail">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Localização</span>
+                                <strong>${project.localizacao || 'Não informado'}</strong>
+                            </div>
+                            <div class="project-detail">
+                                <i class="fas fa-ruler-combined"></i>
+                                <span>Área</span>
+                                <strong>${project.area_construida ? project.area_construida.toLocaleString('pt-BR') + 'm²' : 'Não informado'}</strong>
+                            </div>
+                            <div class="project-detail">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>${project.status === 'Concluído' ? 'Ano' : 'Previsão'}</span>
+                                <strong>${formatarData(project.data_conclusao) || 'Não informado'}</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function setupViewAllGalleryButton(photos) {
+            const viewAllBtn = document.querySelector('#gallery .btn-gold');
+            if (viewAllBtn && photos) {
+                viewAllBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    renderAllGalleryPhotos(photos);
+
+                    // Atualiza o título do modal
+                    document.getElementById('allProjectsModalLabel').textContent = 'Galeria Completa de Fotos';
+
+                    // Usando jQuery se estiver disponível
+                    $('#allProjectsModal').modal('show');
+                });
+            }
+        }
+
+        function setupViewAllButton(projectsWithImages) {
+            const viewAllBtn = document.querySelector('.btn-gold[href="#"]');
+            if (viewAllBtn && projectsWithImages) {
+                viewAllBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    renderAllProjects(projectsWithImages);
+
+                    // Usando jQuery se estiver disponível
+                    $('#allProjectsModal').modal('show');
+                });
+            }
+        }
+
+        document.getElementById('allProjectsModal').addEventListener('hidden.bs.modal', function () {
+            document.getElementById('all-projects-container').innerHTML = '';
+            document.getElementById('allProjectsModalLabel').textContent = 'Todos os Nossos Projetos';
+        });
+        // Função principal
+        async function initializeApp() {
+            try {
+                console.log('Iniciando aplicação...');
+
+                // Cria uma única instância do Supabase
+                const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+                // Carrega os projetos com suas imagens
+                const projectsWithImages = await loadProjectsWithImages(supabaseClient);
+
+                // Renderiza os 3 primeiros projetos na tela principal
+                if (projectsWithImages) {
+                    await renderMainProjects(projectsWithImages);
+                    setupViewAllButton(projectsWithImages);
+                }
+
+                // Carrega as fotos da galeria
+                const galleryPhotos = await loadGalleryPhotos(supabaseClient);
+                if (galleryPhotos) {
+                    renderGalleryPhotos(galleryPhotos);
+                    setupViewAllGalleryButton(galleryPhotos);
+                }
+
+                const teamMembers = await loadTeamMembers(supabaseClient);
+                if (teamMembers) {
+                    renderTeamMembers(teamMembers);
+                }
+
+                // Configura o botão principal
+                const mainButton = document.getElementById('mainButton');
+                if (mainButton) {
+                    mainButton.addEventListener('click', createConfetti);
+                }
+
+            } catch (error) {
+                console.error('Erro na inicialização:', error);
+
+                // Exibe mensagem de erro na página
+                const projectsContainer = document.getElementById('projects-container');
+                if (projectsContainer) {
+                    projectsContainer.innerHTML = `
+                <div class="col-12 text-center">
+                    <p class="text-danger">Erro ao carregar conteúdo. Por favor, verifique sua conexão e tente novamente.</p>
+                </div>
+            `;
+                }
+            }
+        }
+
+        // Função para enviar a mensagem para o Supabase
+        async function sendMessageToDatabase(supabaseClient, formData) {
+            try {
+                const { data, error } = await supabaseClient
+                    .from('contatos') // Nome da sua tabela
+                    .insert([{
+                        nome: formData.nome,
+                        email: formData.email,
+                        telefone: formData.telefone,
+                        assunto: formData.assunto,
+                        mensagem: formData.mensagem,
+                        tipo_solicitacao: formData.assunto, // Pode ser ajustado conforme necessário
+                        status: 'Em andamento',
+                        origem: 'Site'
+                    }]);
+
+                if (error) throw error;
+                return data;
+            } catch (error) {
+                console.error('Erro ao enviar mensagem:', error);
+                throw error;
+            }
+        }
+
+        // Manipulador do formulário de contato
+        document.getElementById('contactForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            const originalBtnClass = submitBtn.className;
+
+            // Obter os valores do formulário
+            const formData = {
+                nome: document.getElementById('nome').value,
+                email: document.getElementById('email').value,
+                telefone: document.getElementById('telefone').value,
+                assunto: document.getElementById('assunto').value,
+                mensagem: document.getElementById('mensagem').value
+            };
+
+            // Validar os campos
+            if (!formData.nome || !formData.email || !formData.telefone || !formData.assunto || !formData.mensagem) {
+                alert('Por favor, preencha todos os campos obrigatórios.');
+                return;
+            }
+
+            // Mostrar estado de carregamento
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
+            submitBtn.disabled = true;
+            submitBtn.className = originalBtnClass + ' disabled';
+
+            try {
+                // Obter a instância do Supabase
+                const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+                // Enviar para o banco de dados
+                await sendMessageToDatabase(supabaseClient, formData);
+
+                // Mostrar confirmação
+                submitBtn.innerHTML = '<i class="fas fa-check me-2"></i>Mensagem Enviada!';
+                submitBtn.className = originalBtnClass.replace('btn-submit', 'btn-success');
+
+                // Criar efeito de confete
+                createConfetti();
+
+                // Resetar o formulário após 3 segundos
+                setTimeout(() => {
+                    this.reset();
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.className = originalBtnClass;
+                    submitBtn.disabled = false;
+                }, 3000);
+
+            } catch (error) {
+                // Mostrar erro
+                submitBtn.innerHTML = '<i class="fas fa-times me-2"></i>Erro ao Enviar';
+                submitBtn.className = originalBtnClass.replace('btn-submit', 'btn-danger');
+
+                console.error('Erro no envio:', error);
+                alert('Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente.');
+
+                // Restaurar o botão após 3 segundos
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.className = originalBtnClass;
+                    submitBtn.disabled = false;
+                }, 3000);
+            }
+        });
+
+        // Inicia quando o DOM estiver pronto
+        if (document.readyState !== 'loading') {
+            if (typeof supabase !== 'undefined') {
+                initializeApp();
+            }
+        } else {
+            document.addEventListener('DOMContentLoaded', function () {
+                if (typeof supabase !== 'undefined') {
+                    initializeApp();
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
