@@ -1,920 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel Administrativo - Construtora Patriarca</title>
 
-    <!-- Meta Tags para SEO e Acessibilidade -->
     <meta name="description" content="Painel administrativo para gerenciamento do site da Construtora Patriarca">
     <meta name="author" content="Construtora Patriarca">
 
-    <!-- Favicon -->
     <link rel="icon" href="https://i.imgur.com/VwmgShm.png" type="image/png">
 
-    <!-- CSS Libraries -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-
-    <style>
-        :root {
-  --primary-dark: #8B0000;
-  --primary-main: #C8102E;
-  --primary-light: #E4002B;
-  --secondary-dark: #5E1914;
-  --secondary-main: #9E2B26;
-  --accent-color: #FF6B6B;
-  --light-color: #FFF5F5;
-  --dark-color: #1A1A1A;
-  --text-primary: #333333;
-  --text-secondary: #5D5D5D;
-  --success-color: #4CAF50;
-  --warning-color: #FFC107;
-  --info-color: #2196F3;
-  --error-color: #F44336;
-  --border-radius: 10px;
-  --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
-  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-/* Base Styles */
-body {
-  font-family: 'Roboto', 'Segoe UI', system-ui, sans-serif;
-  background: linear-gradient(135deg, #FFF5F5 0%, #FFE5E5 100%);
-  color: var(--text-primary);
-  line-height: 1.6;
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-/* Login Modal */
-.login-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, rgba(139, 0, 0, 0.9) 0%, rgba(29, 29, 29, 0.95) 100%);
-  z-index: 9999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  animation: fadeIn 0.4s ease-out;
-}
-
-.login-content {
-  background: white;
-  padding: 2.5rem;
-  border-radius: 15px;
-  width: 90%;
-  max-width: 420px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  transform: translateY(0);
-  transition: all 0.4s ease;
-  border: none;
-  background: linear-gradient(to bottom right, white 0%, #FFF0F0 100%);
-}
-
-.login-content:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-}
-
-.login-content h2 {
-  color: var(--primary-dark);
-  margin-bottom: 1.8rem;
-  text-align: center;
-  font-weight: 700;
-  font-size: 1.8rem;
-  position: relative;
-  padding-bottom: 10px;
-}
-
-.login-content h2:after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 50px;
-  height: 3px;
-  background: var(--primary-main);
-}
-
-.login-content input.form-control {
-  transition: all 0.3s ease;
-  border: 1px solid #ddd;
-}
-
-.login-content input.form-control:focus {
-  border-color: var(--primary-main);
-  box-shadow: 0 0 0 0.2rem rgba(200, 16, 46, 0.25);
-}
-
-#loginForm button[type="submit"] {
-  width: 100%;
-  padding: 12px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  background: linear-gradient(to right, var(--primary-main), var(--primary-dark));
-  border: none;
-  transition: all 0.3s ease;
-}
-
-#loginForm button[type="submit"]:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(200, 16, 46, 0.4);
-}
-
-#loginError {
-  background: #ffebee;
-  border-left: 4px solid var(--error-color);
-  padding: 10px;
-  border-radius: 4px;
-  margin-top: 20px;
-}
-
-.login-content a {
-  transition: all 0.3s ease;
-  text-decoration: none;
-}
-
-.login-content a:hover {
-  color: var(--primary-main) !important;
-}
-
-/* Sidebar - Hidden on mobile */
-.sidebar {
-  width: 280px;
-  height: 100vh;
-  position: fixed;
-  background: linear-gradient(180deg, var(--primary-dark) 0%, var(--primary-main) 100%);
-  color: white;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  z-index: 1000;
-  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.15);
-  transform: translateX(0);
-}
-
-.sidebar-header {
-  padding: 1.8rem 1.5rem;
-  background: rgba(0, 0, 0, 0.15);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.sidebar-header h3 {
-  color: white;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  font-weight: 600;
-  font-size: 1.3rem;
-  letter-spacing: 0.5px;
-}
-
-.sidebar-header img {
-  width: 42px;
-  height: 42px;
-  margin-right: 12px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-}
-
-.sidebar ul.components {
-  padding: 1.2rem 0;
-}
-
-.sidebar ul li a {
-  padding: 0.9rem 1.8rem;
-  color: rgba(255, 255, 255, 0.85);
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  font-weight: 500;
-  border-left: 4px solid transparent;
-  margin: 0.2rem 0.5rem;
-  border-radius: 4px;
-}
-
-.sidebar ul li a:hover {
-  color: white;
-  background: rgba(255, 255, 255, 0.1);
-  border-left: 4px solid var(--accent-color);
-  transform: translateX(4px);
-}
-
-.sidebar ul li a i {
-  margin-right: 14px;
-  width: 24px;
-  text-align: center;
-  font-size: 1.2rem;
-  color: var(--accent-color);
-}
-
-/* Main Content */
-.content {
-  margin-left: 280px;
-  min-height: 100vh;
-  transition: margin-left 0.4s ease;
-  padding-bottom: 3rem;
-}
-
-/* Navbar */
-.navbar {
-  padding: 1.2rem 2rem;
-  background: white;
-  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
-  position: sticky;
-  top: 0;
-  z-index: 900;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.navbar .logo {
-  height: 42px;
-  border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.navbar-text {
-  font-weight: 500;
-  color: var(--primary-dark);
-  margin-right: 1.5rem;
-}
-
-.navbar-text strong {
-  color: var(--primary-main);
-}
-
-/* Dashboard Cards */
-.dashboard-card {
-  color: white;
-  border-radius: var(--border-radius);
-  transition: var(--transition);
-  height: 100%;
-  border: none;
-  overflow: hidden;
-  box-shadow: var(--box-shadow);
-  background: linear-gradient(135deg, var(--primary-main) 0%, var(--primary-dark) 100%);
-  position: relative;
-  z-index: 1;
-}
-
-.dashboard-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
-  z-index: -1;
-  opacity: 0;
-  transition: var(--transition);
-}
-
-.dashboard-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 25px rgba(200, 16, 46, 0.2);
-}
-
-.dashboard-card:hover::before {
-  opacity: 1;
-}
-
-.dashboard-card .card-body {
-  padding: 1.8rem;
-  position: relative;
-  z-index: 2;
-}
-
-.dashboard-card .card-title {
-  font-size: 1.1rem;
-  margin-bottom: 1.2rem;
-  font-weight: 500;
-  opacity: 0.9;
-  letter-spacing: 0.5px;
-}
-
-.dashboard-card .card-text {
-  font-size: 2.4rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.dashboard-card a {
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 0.95rem;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  transition: var(--transition);
-  font-weight: 500;
-}
-
-.dashboard-card a:hover {
-  color: white;
-  transform: translateX(6px);
-}
-
-/* Section Cards */
-.card {
-  border: none;
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
-  margin-bottom: 2rem;
-  overflow: hidden;
-  background: white;
-  transition: var(--transition);
-}
-
-.card:hover {
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
-
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: white;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  padding: 1.5rem 2rem;
-}
-
-.card-header h5 {
-  margin: 0;
-  font-weight: 600;
-  color: var(--primary-dark);
-  font-size: 1.2rem;
-  display: flex;
-  align-items: center;
-}
-
-.card-header h5 i {
-  margin-right: 12px;
-  color: var(--primary-main);
-}
-
-.card-body {
-  padding: 2rem;
-}
-
-/* Tables */
-.table {
-  color: var(--text-primary);
-  border-collapse: separate;
-  border-spacing: 0;
-}
-
-.table thead th {
-  border-bottom-width: 1px;
-  font-weight: 600;
-  text-transform: uppercase;
-  font-size: 0.75rem;
-  letter-spacing: 0.8px;
-  color: var(--text-secondary);
-  border-top: none;
-  background: rgba(200, 16, 46, 0.05);
-  padding: 1rem 1.2rem;
-}
-
-.table tbody td {
-  padding: 1.2rem;
-  vertical-align: middle;
-  border-top: 1px solid rgba(0, 0, 0, 0.03);
-}
-
-.table-striped tbody tr:nth-of-type(odd) {
-  background-color: rgba(200, 16, 46, 0.02);
-}
-
-.table-hover tbody tr:hover {
-  background-color: rgba(200, 16, 46, 0.05);
-}
-
-/* Images */
-.preview-image {
-  max-width: 100%;
-  max-height: 180px;
-  display: none;
-  border-radius: var(--border-radius);
-  border: 1px solid #eee;
-  margin-top: 0.8rem;
-  object-fit: cover;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-.preview-image.show {
-  display: block;
-}
-
-.img-thumbnail {
-  max-width: 100px;
-  max-height: 80px;
-  object-fit: cover;
-  border-radius: 8px;
-  border: 1px solid #eee;
-  background-color: white;
-  padding: 0.3rem;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-}
-
-/* Buttons */
-.btn {
-  font-weight: 500;
-  padding: 0.65rem 1.25rem;
-  border-radius: var(--border-radius);
-  transition: var(--transition);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  letter-spacing: 0.5px;
-  border: none;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.btn i {
-  margin-right: 8px;
-  font-size: 1.1em;
-}
-
-.btn-sm {
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
-}
-
-.btn-primary {
-  background: linear-gradient(to right, var(--primary-main), var(--primary-dark));
-  color: white;
-}
-
-.btn-primary:hover {
-  background: linear-gradient(to right, var(--primary-light), var(--primary-main));
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(200, 16, 46, 0.3);
-}
-
-.btn-secondary {
-  background: linear-gradient(to right, #6c757d, #5a6268);
-  color: white;
-}
-
-.btn-danger {
-  background: linear-gradient(to right, var(--error-color), #d32f2f);
-  color: white;
-}
-
-.btn-group-sm > .btn {
-  padding: 0.4rem 0.8rem;
-  font-size: 0.85rem;
-}
-
-/* Badges */
-.badge {
-  font-weight: 600;
-  padding: 0.45em 0.8em;
-  border-radius: 50rem;
-  font-size: 0.75em;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-}
-
-.bg-primary {
-  background: linear-gradient(to right, var(--primary-main), var(--primary-dark)) !important;
-}
-
-.bg-success {
-  background: linear-gradient(to right, var(--success-color), #388E3C) !important;
-}
-
-.bg-warning {
-  background: linear-gradient(to right, var(--warning-color), #FFA000) !important;
-}
-
-.bg-info {
-  background: linear-gradient(to right, var(--info-color), #1976D2) !important;
-}
-
-.bg-danger {
-  background: linear-gradient(to right, var(--error-color), #D32F2F) !important;
-}
-
-/* Forms */
-.form-control, .form-select {
-  border-radius: var(--border-radius);
-  padding: 0.7rem 1rem;
-  border: 1px solid #ddd;
-  transition: var(--transition);
-  font-size: 0.95rem;
-}
-
-.form-control:focus, .form-select:focus {
-  border-color: var(--primary-main);
-  box-shadow: 0 0 0 0.25rem rgba(200, 16, 46, 0.25);
-  outline: none;
-}
-
-.form-label {
-  font-weight: 600;
-  margin-bottom: 0.6rem;
-  color: var(--text-primary);
-  font-size: 0.95rem;
-}
-
-.form-text {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-}
-
-.form-check-input:checked {
-  background-color: var(--primary-main);
-  border-color: var(--primary-main);
-}
-
-/* Modals */
-.modal-content {
-  border: none;
-  border-radius: var(--border-radius);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-  background: linear-gradient(to bottom, white 0%, #FFF9F9 100%);
-}
-
-.modal-header {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  padding: 1.5rem;
-  background: linear-gradient(to right, white 0%, #FFF0F0 100%);
-}
-
-.modal-title {
-  font-weight: 700;
-  color: #fff;
-  font-size: 1.4rem; 
-}
-
-.modal-footer {
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
-  padding: 1.2rem 1.5rem;
-  background: #FFF9F9;
-}
-
-/* Toasts */
-.toast-container {
-  position: fixed;
-  top: 1.5rem;
-  right: 1.5rem;
-  z-index: 1100;
-}
-
-.toast {
-  border: none;
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
-  overflow: hidden;
-  backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.toast-header {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  font-weight: 600;
-}
-
-.toast-body {
-  padding: 1.2rem;
-  display: flex;
-  align-items: center;
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.fade-in {
-  animation: fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-/* Responsive Design */
-@media (max-width: 992px) {
-  .sidebar {
-    transform: translateX(-100%);
-    position: fixed;
-    z-index: 1100;
-    box-shadow: none;
-  }
-  
-  .sidebar.active {
-    transform: translateX(0);
-    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
-  }
-  
-  .content {
-    margin-left: 0;
-  }
-  
-  #sidebarCollapse {
-    display: block;
-    margin-right: 1rem;
-  }
-  
-  .navbar-brand {
-    margin-left: auto;
-  }
-  
-  .dashboard-card .card-text {
-    font-size: 2rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .card-header {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 1.2rem;
-  }
-  
-  .card-header h5 {
-    margin-bottom: 1rem;
-  }
-  
-  .card-body {
-    padding: 1.5rem;
-  }
-  
-  .modal-dialog {
-    margin: 0.5rem auto;
-    max-width: 95%;
-  }
-  
-  .btn {
-    padding: 0.6rem 1.1rem;
-  }
-}
-
-@media (max-width: 576px) {
-  .login-content {
-    padding: 1.8rem;
-    margin: 0 1rem;
-    width: calc(100% + 2rem);
-  }
-  
-  .table-responsive {
-    border: none;
-    margin: 0 -1rem;
-    width: calc(100% + 2rem);
-  }
-  
-  .toast-container {
-    left: 1rem;
-    right: 1rem;
-    top: 1rem;
-    max-width: calc(100% - 2rem);
-  }
-  
-  .dashboard-card .card-body {
-    padding: 1.5rem;
-  }
-  
-  .dashboard-card .card-text {
-    font-size: 1.8rem;
-  }
-  
-  .navbar {
-    padding: 1rem;
-  }
-}
-
-/* Utility Classes */
-.text-danger {
-  color: var(--error-color) !important;
-}
-
-.text-white {
-  color: white !important;
-}
-
-.text-muted {
-  color: var(--text-secondary) !important;
-}
-
-.mt-2 {
-  margin-top: 0.5rem !important;
-}
-
-.mb-3 {
-  margin-bottom: 1rem !important;
-}
-
-.me-1 {
-  margin-right: 0.25rem !important;
-}
-
-.me-2 {
-  margin-right: 0.5rem !important;
-}
-
-.me-3 {
-  margin-right: 1rem !important;
-}
-
-.ms-auto {
-  margin-left: auto !important;
-}
-
-.m-auto {
-  margin: auto !important;
-}
-
-.d-flex {
-  display: flex !important;
-}
-
-.align-items-center {
-  align-items: center !important;
-}
-
-.justify-content-center {
-  justify-content: center !important;
-}
-
-.d-lg-none {
-  display: none !important;
-}
-
-@media (max-width: 992px) {
-  .d-lg-none {
-    display: block !important;
-  }
-}
-
-.w-100 {
-  width: 100% !important;
-}
-
-.h-100 {
-  height: 100% !important;
-}
-
-.overflow-hidden {
-  overflow: hidden !important;
-}
-
-.position-fixed {
-  position: fixed !important;
-}
-
-.position-relative {
-  position: relative !important;
-}
-
-.position-absolute {
-  position: absolute !important;
-}
-
-.text-center {
-  text-align: center !important;
-}
-
-.rounded {
-  border-radius: var(--border-radius) !important;
-}
-
-.shadow {
-  box-shadow: var(--box-shadow) !important;
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--primary-main);
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--primary-dark);
-}
-
-/* Hamburger Menu */
-.hamburger-menu {
-  display: none;
-  width: 30px;
-  height: 20px;
-  position: relative;
-  transform: rotate(0deg);
-  transition: .5s ease-in-out;
-  cursor: pointer;
-  z-index: 1101;
-}
-
-.hamburger-menu span {
-  display: block;
-  position: absolute;
-  height: 3px;
-  width: 100%;
-  background: var(--primary-main);
-  border-radius: 3px;
-  opacity: 1;
-  left: 0;
-  transform: rotate(0deg);
-  transition: .25s ease-in-out;
-}
-
-.hamburger-menu span:nth-child(1) {
-  top: 0px;
-}
-
-.hamburger-menu span:nth-child(2), .hamburger-menu span:nth-child(3) {
-  top: 10px;
-}
-
-.hamburger-menu span:nth-child(4) {
-  top: 20px;
-}
-
-.hamburger-menu.open span:nth-child(1) {
-  top: 10px;
-  width: 0%;
-  left: 50%;
-}
-
-.hamburger-menu.open span:nth-child(2) {
-  transform: rotate(45deg);
-}
-
-.hamburger-menu.open span:nth-child(3) {
-  transform: rotate(-45deg);
-}
-
-.hamburger-menu.open span:nth-child(4) {
-  top: 10px;
-  width: 0%;
-  left: 50%;
-}
-
-@media (max-width: 992px) {
-  .hamburger-menu {
-    display: block;
-  }
-}
-
-/* Efeito de animação ao carregar */
-.animate__animated.animate__fadeIn {
-    animation-duration: 0.6s;
-}
-
-/* Responsividade para mobile */
-@media (max-width: 576px) {
-    .login-content {
-        padding: 1.8rem;
-        margin: 0 1rem;
-        width: calc(100% - 2rem);
-    }
-    
-    .login-content h2 {
-        font-size: 1.5rem;
-    }
-}
-    </style>
+    <link rel="stylesheet" href="cadastroStyle.css">
 </head>
 
 <body>
-    <!-- Modal de Login -->
     <div class="login-modal" id="loginModal">
         <div class="login-content animate__animated animate__fadeIn">
             <div class="text-center mb-4">
-                <img src="https://i.imgur.com/VwmgShm.png" alt="Construtora Patriarca" style="width: 80px; height: auto;">
+                <img src="https://i.imgur.com/VwmgShm.png" alt="Construtora Patriarca"
+                    style="width: 80px; height: auto;">
             </div>
             <h2><i class="fas fa-lock"></i> Acesso Administrativo</h2>
             <form id="loginForm">
@@ -925,7 +34,8 @@ body {
                 <div class="mb-3">
                     <label for="password" class="form-label">Senha</label>
                     <div class="input-group">
-                        <input type="password" class="form-control" id="password" required placeholder="Digite sua senha">
+                        <input type="password" class="form-control" id="password" required
+                            placeholder="Digite sua senha">
                         <span class="input-group-text" id="togglePassword" style="cursor: pointer;">
                             <i class="fas fa-eye"></i>
                         </span>
@@ -941,9 +51,7 @@ body {
         </div>
     </div>
 
-    <!-- Conteúdo principal (inicialmente escondido) -->
     <div id="mainContent" style="display: none;">
-        <!-- Sidebar Navigation -->
         <nav class="sidebar">
             <div class="sidebar-header">
                 <h3><a class="navbar-brand" href="#">
@@ -967,9 +75,7 @@ body {
             </ul>
         </nav>
 
-        <!-- Main Content -->
         <div class="content">
-            <!-- Top Navigation Bar -->
             <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
                     <div class="ms-auto d-flex align-items-center">
@@ -983,7 +89,6 @@ body {
                 </div>
             </nav>
 
-            <!-- Dashboard Section -->
             <div class="container-fluid">
                 <div class="row mb-4">
                     <div class="col-md-3 p-2">
@@ -1035,7 +140,6 @@ body {
                     </div>
                 </div>
 
-                <!-- Projetos Management Section -->
                 <section id="projetos-section" class="mb-5 fade-in">
                     <div class="card">
                         <div class="card-header">
@@ -1061,7 +165,6 @@ body {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <!-- Data will be loaded via JavaScript -->
                                     </tbody>
                                 </table>
                             </div>
@@ -1069,7 +172,6 @@ body {
                     </div>
                 </section>
 
-                <!-- Galeria de Fotos Section -->
                 <section id="galeria-section" class="mb-5 fade-in">
                     <div class="card">
                         <div class="card-header">
@@ -1094,7 +196,6 @@ body {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <!-- Data will be loaded via JavaScript -->
                                     </tbody>
                                 </table>
                             </div>
@@ -1102,13 +203,12 @@ body {
                     </div>
                 </section>
 
-                <!-- Funcionários Management Section -->
                 <section id="funcionarios-section" class="mb-5 fade-in">
                     <div class="card">
                         <div class="card-header">
                             <h5 class="mb-0"><i class="fas fa-users me-2"></i> Gerenciar Funcionários</h5>
-                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#funcionarioModal"
-                                id="addFuncionarioBtn">
+                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#funcionarioModal" id="addFuncionarioBtn">
                                 <i class="fas fa-plus me-1"></i> Adicionar Funcionário
                             </button>
                         </div>
@@ -1128,7 +228,6 @@ body {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <!-- Data will be loaded via JavaScript -->
                                     </tbody>
                                 </table>
                             </div>
@@ -1136,7 +235,6 @@ body {
                     </div>
                 </section>
 
-                <!-- Contatos Management Section -->
                 <section id="contatos-section" class="mb-5 fade-in">
                     <div class="card">
                         <div class="card-header">
@@ -1158,7 +256,6 @@ body {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <!-- Data will be loaded via JavaScript -->
                                     </tbody>
                                 </table>
                             </div>
@@ -1169,7 +266,6 @@ body {
         </div>
     </div>
 
-    <!-- Toast Container -->
     <div class="toast-container">
         <div class="toast align-items-center text-white bg-success" role="alert" aria-live="assertive"
             aria-atomic="true" id="successToast">
@@ -1195,7 +291,6 @@ body {
         </div>
     </div>
 
-    <!-- Projeto Modal -->
     <div class="modal fade" id="projetoModal" tabindex="-1" aria-labelledby="projetoModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -1219,13 +314,15 @@ body {
 
                                 <div class="mb-3">
                                     <label for="projetoDescricao" class="form-label">Descrição</label>
-                                    <textarea class="form-control" id="projetoDescricao" name="descricao" rows="3"></textarea>
+                                    <textarea class="form-control" id="projetoDescricao" name="descricao"
+                                        rows="3"></textarea>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="projetoLocalizacao" class="form-label">Localização <span
                                             class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="projetoLocalizacao" name="localizacao" required>
+                                    <input type="text" class="form-control" id="projetoLocalizacao" name="localizacao"
+                                        required>
                                 </div>
                             </div>
 
@@ -1237,17 +334,20 @@ body {
 
                                 <div class="mb-3">
                                     <label for="projetoDataConclusao" class="form-label">Data Conclusão</label>
-                                    <input type="date" class="form-control" id="projetoDataConclusao" name="data_conclusao">
+                                    <input type="date" class="form-control" id="projetoDataConclusao"
+                                        name="data_conclusao">
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="projetoArea" class="form-label">Área Construída (m²)</label>
-                                    <input type="number" step="0.01" class="form-control" id="projetoArea" name="area_construida">
+                                    <input type="number" step="0.01" class="form-control" id="projetoArea"
+                                        name="area_construida">
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="projetoValor" class="form-label">Valor do Contrato (R$)</label>
-                                    <input type="number" step="0.01" class="form-control" id="projetoValor" name="valor_contrato">
+                                    <input type="number" step="0.01" class="form-control" id="projetoValor"
+                                        name="valor_contrato">
                                 </div>
 
                                 <div class="mb-3">
@@ -1261,8 +361,10 @@ body {
                                 </div>
 
                                 <div class="mb-3 form-check">
-                                    <input type="checkbox" class="form-check-input" id="projetoDestaque" name="destaque">
-                                    <label class="form-check-label" for="projetoDestaque">Destacar na página inicial</label>
+                                    <input type="checkbox" class="form-check-input" id="projetoDestaque"
+                                        name="destaque">
+                                    <label class="form-check-label" for="projetoDestaque">Destacar na página
+                                        inicial</label>
                                 </div>
                             </div>
                         </div>
@@ -1281,7 +383,6 @@ body {
         </div>
     </div>
 
-    <!-- Foto Modal -->
     <div class="modal fade" id="fotoModal" tabindex="-1" aria-labelledby="fotoModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -1302,18 +403,19 @@ body {
                                             class="text-danger">*</span></label>
                                     <select class="form-select" id="fotoProjeto" name="projeto_id" required>
                                         <option value="">Selecione um projeto...</option>
-                                        <!-- Options will be loaded via JavaScript -->
                                     </select>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="fotoDescricao" class="form-label">Descrição</label>
-                                    <textarea class="form-control" id="fotoDescricao" name="descricao" rows="3"></textarea>
+                                    <textarea class="form-control" id="fotoDescricao" name="descricao"
+                                        rows="3"></textarea>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="fotoOrdem" class="form-label">Ordem de Exibição</label>
-                                    <input type="number" class="form-control" id="fotoOrdem" name="ordem_exibicao" value="0">
+                                    <input type="number" class="form-control" id="fotoOrdem" name="ordem_exibicao"
+                                        value="0">
                                 </div>
                             </div>
 
@@ -1321,9 +423,9 @@ body {
                                 <div class="mb-3">
                                     <label for="fotoImagemUrl" class="form-label">URL da Imagem <span
                                             class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="fotoImagemUrl" name="foto_url"
-                                        required>
-                                    <div class="form-text">Cole a URL completa da imagem (ex: https://exemplo.com/imagem.jpg)</div>
+                                    <input type="text" class="form-control" id="fotoImagemUrl" name="foto_url" required>
+                                    <div class="form-text">Cole a URL completa da imagem (ex:
+                                        https://exemplo.com/imagem.jpg)</div>
                                     <img id="fotoImagemPreview" class="preview-image mt-2">
                                 </div>
 
@@ -1348,8 +450,8 @@ body {
         </div>
     </div>
 
-    <!-- Funcionário Modal -->
-    <div class="modal fade" id="funcionarioModal" tabindex="-1" aria-labelledby="funcionarioModalLabel" aria-hidden="true">
+    <div class="modal fade" id="funcionarioModal" tabindex="-1" aria-labelledby="funcionarioModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -1379,7 +481,8 @@ body {
                                 <div class="mb-3">
                                     <label for="funcionarioDepartamento" class="form-label">Departamento <span
                                             class="text-danger">*</span></label>
-                                    <select class="form-select" id="funcionarioDepartamento" name="departamento" required>
+                                    <select class="form-select" id="funcionarioDepartamento" name="departamento"
+                                        required>
                                         <option value="">Selecione...</option>
                                         <option value="Obras">Obras</option>
                                         <option value="Projetos">Projetos</option>
@@ -1399,8 +502,10 @@ body {
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="funcionarioDataContratacao" class="form-label">Data de Contratação</label>
-                                    <input type="date" class="form-control" id="funcionarioDataContratacao" name="data_contratacao">
+                                    <label for="funcionarioDataContratacao" class="form-label">Data de
+                                        Contratação</label>
+                                    <input type="date" class="form-control" id="funcionarioDataContratacao"
+                                        name="data_contratacao">
                                 </div>
 
                                 <div class="mb-3">
@@ -1409,7 +514,8 @@ body {
                                 </div>
 
                                 <div class="mb-3 form-check">
-                                    <input type="checkbox" class="form-check-input" id="funcionarioAtivo" name="ativo" checked>
+                                    <input type="checkbox" class="form-check-input" id="funcionarioAtivo" name="ativo"
+                                        checked>
                                     <label class="form-check-label" for="funcionarioAtivo">Funcionário ativo</label>
                                 </div>
                             </div>
@@ -1429,7 +535,6 @@ body {
         </div>
     </div>
 
-    <!-- Confirmation Modal -->
     <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -1457,881 +562,13 @@ body {
         </div>
     </div>
 
-    <!-- JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    
-    <script>
-    // Configuração do Supabase
-    const SUPABASE_URL = 'https://flrprpaswimtggikhbfv.supabase.co';
-    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZscnBycGFzd2ltdGdnaWtoYmZ2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQwNjU1MzIsImV4cCI6MjA1OTY0MTUzMn0.KIlghqbZMcU-nbEFO7hC8jTPfeb0A1MLJv2so5Gs2ho';
 
-    // Namespace para organização do código
-    const AdminPanel = {
-        supabase: null,
-
-        // Dados da aplicação
-        data: {
-            projetos: [],
-            galeria: [],
-            funcionarios: [],
-            contatos: []
-        },
-
-        // Elementos da DOM
-        elements: {
-            tables: {
-                projetos: null,
-                galeria: null,
-                funcionarios: null,
-                contatos: null
-            },
-            counters: {
-                projetos: null,
-                funcionarios: null,
-                contatos: null
-            },
-            toasts: {
-                success: null,
-                error: null
-            }
-        },
-
-        // Inicialização da aplicação
-        init: async function () {
-            try {
-                // 1. Inicializa os componentes visuais primeiro
-                this.initToasts();
-                this.initDataTables();
-                this.setupSidebar();
-                this.setupEventHandlers();
-
-                // 2. Inicializa o Supabase
-                this.supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-                // 3. Testa a conexão
-                const { data, error } = await this.supabase
-                    .from('projetos')
-                    .select('*')
-                    .limit(1);
-
-                if (error) throw error;
-
-                // 4. Carrega os dados
-                await this.loadData();
-
-                console.log('Painel administrativo inicializado com sucesso');
-            } catch (error) {
-                console.error('Erro ao inicializar o painel:', error);
-                this.showErrorToast('Erro ao conectar com o banco de dados');
-            }
-        },
-
-        // Inicializa os toasts
-        initToasts: function () {
-            this.elements.toasts.success = new bootstrap.Toast(document.getElementById('successToast'));
-            this.elements.toasts.error = new bootstrap.Toast(document.getElementById('errorToast'));
-        },
-
-        // Mostra um toast de sucesso
-        showSuccessToast: function (message) {
-            $('#successToastMessage').text(message);
-            this.elements.toasts.success.show();
-        },
-
-        // Mostra um toast de erro
-        showErrorToast: function (message) {
-            $('#errorToastMessage').text(message);
-            this.elements.toasts.error.show();
-        },
-
-        // Configura a sidebar
-        setupSidebar: function () {
-            $('#sidebarCollapse').on('click', function () {
-                $('.sidebar').toggleClass('active');
-                $('.content').toggleClass('active');
-            });
-
-            $('a[href^="#"]').on('click', function (e) {
-                e.preventDefault();
-                const target = $(this).attr('href');
-                $('html, body').animate({
-                    scrollTop: $(target).offset().top - 20
-                }, 500);
-            });
-        },
-
-        // Inicializa as tabelas DataTables
-        initDataTables: function () {
-            const portugueseTranslation = {
-                "decimal": "",
-                "emptyTable": "Nenhum dado disponível na tabela",
-                "info": "Mostrando _START_ a _END_ de _TOTAL_ registros",
-                "infoEmpty": "Mostrando 0 a 0 de 0 registros",
-                "infoFiltered": "(filtrado de _MAX_ registros no total)",
-                "infoPostFix": "",
-                "thousands": ",",
-                "lengthMenu": "Mostrar _MENU_ registros",
-                "loadingRecords": "Carregando...",
-                "processing": "Processando...",
-                "search": "Pesquisar:",
-                "zeroRecords": "Nenhum registro correspondente encontrado",
-                "paginate": {
-                    "first": "Primeiro",
-                    "last": "Último",
-                    "next": "Próximo",
-                    "previous": "Anterior"
-                },
-                "aria": {
-                    "sortAscending": ": ativar para ordenar coluna ascendente",
-                    "sortDescending": ": ativar para ordenar coluna descendente"
-                }
-            };
-
-            this.elements.tables.projetos = $('#projetosTable').DataTable({
-                responsive: true,
-                language: portugueseTranslation,
-                autoWidth: false,
-                columnDefs: [
-                    { width: '50px', targets: 0 },
-                    { width: '120px', targets: 1 },
-                    { width: '150px', targets: 6 }
-                ]
-            });
-
-            this.elements.tables.galeria = $('#galeriaTable').DataTable({
-                responsive: true,
-                language: portugueseTranslation,
-                autoWidth: false,
-                columnDefs: [
-                    { width: '50px', targets: 0 },
-                    { width: '120px', targets: 1 },
-                    { width: '150px', targets: 5 }
-                ]
-            });
-
-            this.elements.tables.funcionarios = $('#funcionariosTable').DataTable({
-                responsive: true,
-                language: portugueseTranslation,
-                autoWidth: false,
-                columnDefs: [
-                    { width: '50px', targets: 0 },
-                    { width: '120px', targets: 1 },
-                    { width: '150px', targets: 6 }
-                ]
-            });
-
-            this.elements.tables.contatos = $('#contatosTable').DataTable({
-                responsive: true,
-                language: portugueseTranslation,
-                autoWidth: false,
-                columnDefs: [
-                    { width: '50px', targets: 0 },
-                    { width: '150px', targets: 6 }
-                ]
-            });
-
-            this.elements.counters.projetos = $('#projetos-count');
-            this.elements.counters.funcionarios = $('#funcionarios-count');
-            this.elements.counters.contatos = $('#contatos-count');
-        },
-
-        // Carrega dados do banco de dados
-        loadData: async function () {
-            try {
-                // Carrega todos os dados em paralelo
-                const [projetos, galeria, funcionarios, contatos] = await Promise.all([
-                    this.supabase.from('projetos').select('*').order('data_inicio', { ascending: false }),
-                    this.supabase.from('galeria_fotos').select('*').order('data_upload', { ascending: false }),
-                    this.supabase.from('funcionarios').select('*').order('nome', { ascending: true }),
-                    this.supabase.from('contatos').select('*').order('data_contato', { ascending: false })
-                ]);
-
-                // Verifica erros
-                if (projetos.error) throw projetos.error;
-                if (galeria.error) throw galeria.error;
-                if (funcionarios.error) throw funcionarios.error;
-                if (contatos.error) throw contatos.error;
-
-                // Atualiza os dados
-                this.data.projetos = projetos.data || [];
-                this.data.galeria = galeria.data || [];
-                this.data.funcionarios = funcionarios.data || [];
-                this.data.contatos = contatos.data || [];
-
-                // Atualiza a interface
-                this.updateTables();
-                this.updateCounters();
-
-            } catch (error) {
-                console.error('Erro ao carregar dados:', error);
-                this.showErrorToast('Erro ao carregar dados do banco de dados');
-            }
-        },
-
-        // Atualiza todas as tabelas
-        updateTables: function () {
-            this.updateProjetosTable();
-            this.updateGaleriaTable();
-            this.updateFuncionariosTable();
-            this.updateContatosTable();
-        },
-
-        // Atualiza a tabela de projetos
-        updateProjetosTable: function () {
-            const table = this.elements.tables.projetos;
-            table.clear();
-
-            this.data.projetos.forEach(projeto => {
-                const imgTag = this.getFirstProjectImage(projeto.id) || '<i class="fas fa-building fa-2x text-muted"></i>';
-
-                const statusBadge = this.getStatusBadge(projeto.status);
-                const destaqueBadge = projeto.destaque 
-                    ? '<span class="badge bg-warning">Destaque</span>' 
-                    : '<span class="badge bg-secondary">Normal</span>';
-
-                table.row.add([
-                    projeto.id,
-                    imgTag,
-                    projeto.titulo || '-',
-                    projeto.localizacao || '-',
-                    statusBadge,
-                    destaqueBadge,
-                    this.createActionButtons('projeto', projeto.id)
-                ]);
-            });
-
-            table.draw();
-        },
-
-        // Obtém a primeira imagem de um projeto
-        getFirstProjectImage: function(projetoId) {
-            const foto = this.data.galeria.find(f => f.projeto_id === projetoId);
-            if (foto) {
-                return `<img src="${foto.foto_url}" class="img-thumbnail" alt="Projeto ${projetoId}" style="max-width: 100px;">`;
-            }
-            return null;
-        },
-
-        // Retorna o badge de status apropriado
-        getStatusBadge: function(status) {
-            switch(status) {
-                case 'Em andamento': return '<span class="badge bg-primary">Em andamento</span>';
-                case 'Concluído': return '<span class="badge bg-success">Concluído</span>';
-                case 'Suspenso': return '<span class="badge bg-danger">Suspenso</span>';
-                default: return '<span class="badge bg-secondary">Em planejamento</span>';
-            }
-        },
-
-        // Atualiza a tabela de galeria
-        updateGaleriaTable: function () {
-            const table = this.elements.tables.galeria;
-            table.clear();
-
-            this.data.galeria.forEach(foto => {
-                const projeto = this.data.projetos.find(p => p.id === foto.projeto_id);
-                const projetoNome = projeto ? projeto.titulo : 'Projeto não encontrado';
-
-                const imgTag = foto.foto_url
-                    ? `<img src="${foto.foto_url}" class="img-thumbnail" alt="Foto ${foto.id}" style="max-width: 100px;">`
-                    : '<i class="fas fa-image fa-2x text-muted"></i>';
-
-                const capaBadge = foto.capa 
-                    ? '<span class="badge bg-success">Sim</span>' 
-                    : '<span class="badge bg-secondary">Não</span>';
-
-                table.row.add([
-                    foto.id,
-                    imgTag,
-                    projetoNome,
-                    foto.descricao ? (foto.descricao.length > 50 ? foto.descricao.substring(0, 50) + '...' : foto.descricao) : '-',
-                    capaBadge,
-                    this.createActionButtons('foto', foto.id)
-                ]);
-            });
-
-            table.draw();
-        },
-
-        // Atualiza a tabela de funcionários
-        updateFuncionariosTable: function () {
-            const table = this.elements.tables.funcionarios;
-            table.clear();
-
-            this.data.funcionarios.forEach(funcionario => {
-                const imgTag = funcionario.foto_url
-                    ? `<img src="${funcionario.foto_url}" class="img-thumbnail" alt="${funcionario.nome}" style="max-width: 100px;">`
-                    : '<i class="fas fa-user-circle fa-2x text-muted"></i>';
-
-                const statusBadge = funcionario.ativo 
-                    ? '<span class="badge bg-success">Ativo</span>' 
-                    : '<span class="badge bg-danger">Inativo</span>';
-
-                table.row.add([
-                    funcionario.id,
-                    imgTag,
-                    funcionario.nome || '-',
-                    funcionario.cargo || '-',
-                    funcionario.departamento || '-',
-                    statusBadge,
-                    this.createActionButtons('funcionario', funcionario.id)
-                ]);
-            });
-
-            table.draw();
-        },
-
-        // Atualiza a tabela de contatos
-        updateContatosTable: function () {
-            const table = this.elements.tables.contatos;
-            table.clear();
-
-            this.data.contatos.forEach(contato => {
-                const contatoInfo = contato.email 
-                    ? `${contato.email}${contato.telefone ? '<br>' + contato.telefone : ''}`
-                    : contato.telefone || '-';
-
-                const statusBadge = this.getContatoStatusBadge(contato.status);
-
-                table.row.add([
-                    contato.id,
-                    contato.nome || '-',
-                    contatoInfo,
-                    contato.assunto || '-',
-                    this.formatDateTime(contato.data_contato),
-                    statusBadge,
-                    this.createActionButtons('contato', contato.id)
-                ]);
-            });
-
-            table.draw();
-        },
-
-        // Retorna o badge de status para contatos
-        getContatoStatusBadge: function(status) {
-            switch(status) {
-                case 'Respondido': return '<span class="badge bg-success">Respondido</span>';
-                case 'Em andamento': return '<span class="badge bg-primary">Em andamento</span>';
-                default: return '<span class="badge bg-secondary">Não respondido</span>';
-            }
-        },
-
-        // Cria botões de ação para as tabelas
-        createActionButtons: function (type, id) {
-            return `
-                <div class="btn-group btn-group-sm" role="group">
-                    <button class="btn btn-primary edit-${type}" data-id="${id}" title="Editar">
-                        <i class="fas fa-edit"></i>
-                    </button>
-                    <button class="btn btn-danger delete-item" data-type="${type}" data-id="${id}" title="Excluir">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </div>
-            `;
-        },
-
-        // Atualiza os contadores
-        updateCounters: function () {
-            this.elements.counters.projetos.text(this.data.projetos.filter(p => p.status === 'Em andamento').length);
-            this.elements.counters.funcionarios.text(this.data.funcionarios.filter(f => f.ativo).length);
-            this.elements.counters.contatos.text(this.data.contatos.length);
-        },
-
-        // Configura os manipuladores de eventos
-        setupEventHandlers: function () {
-            this.setupAddButtons();
-            this.setupEditButtons();
-            this.setupDeleteButtons();
-            this.setupSaveButtons();
-            this.setupUrlPreviews();
-        },
-
-        // Configura botões de adição
-        setupAddButtons: function () {
-            $('#addProjetoBtn').on('click', () => {
-                $('#projetoModalTitle').text('Adicionar Projeto');
-                $('#projetoForm')[0].reset();
-                $('#projetoId').val('');
-                $('#projetoModal').modal('show');
-            });
-
-            $('#addFotoBtn').on('click', async () => {
-                $('#fotoModalTitle').text('Adicionar Foto');
-                $('#fotoForm')[0].reset();
-                $('#fotoId').val('');
-                $('#fotoImagemUrl').val('');
-                $('#fotoImagemPreview').attr('src', '').removeClass('show');
-                
-                // Carrega os projetos no select
-                const select = $('#fotoProjeto');
-                select.empty().append('<option value="">Selecione um projeto...</option>');
-                
-                this.data.projetos.forEach(projeto => {
-                    select.append(`<option value="${projeto.id}">${projeto.titulo}</option>`);
-                });
-                
-                $('#fotoModal').modal('show');
-            });
-
-            $('#addFuncionarioBtn').on('click', () => {
-                $('#funcionarioModalTitle').text('Adicionar Funcionário');
-                $('#funcionarioForm')[0].reset();
-                $('#funcionarioId').val('');
-                $('#funcionarioFotoUrl').val('');
-                $('#funcionarioFotoPreview').attr('src', '').removeClass('show');
-                $('#funcionarioModal').modal('show');
-            });
-        },
-
-        // Configura botões de edição
-        setupEditButtons: function () {
-            $(document).on('click', '.edit-projeto', async (e) => {
-                const id = $(e.currentTarget).data('id');
-
-                try {
-                    const { data: projeto, error } = await this.supabase
-                        .from('projetos')
-                        .select('*')
-                        .eq('id', id)
-                        .single();
-
-                    if (error) throw error;
-
-                    if (projeto) {
-                        $('#projetoModalTitle').text('Editar Projeto');
-                        $('#projetoId').val(projeto.id);
-                        $('#projetoTitulo').val(projeto.titulo);
-                        $('#projetoDescricao').val(projeto.descricao);
-                        $('#projetoLocalizacao').val(projeto.localizacao);
-                        $('#projetoDataInicio').val(projeto.data_inicio);
-                        $('#projetoDataConclusao').val(projeto.data_conclusao);
-                        $('#projetoArea').val(projeto.area_construida);
-                        $('#projetoValor').val(projeto.valor_contrato);
-                        $('#projetoStatus').val(projeto.status);
-                        $('#projetoDestaque').prop('checked', projeto.destaque);
-
-                        $('#projetoModal').modal('show');
-                    }
-                } catch (error) {
-                    console.error('Erro ao carregar projeto:', error);
-                    this.showErrorToast('Erro ao carregar dados do projeto');
-                }
-            });
-
-            $(document).on('click', '.edit-foto', async (e) => {
-                const id = $(e.currentTarget).data('id');
-
-                try {
-                    const { data: foto, error } = await this.supabase
-                        .from('galeria_fotos')
-                        .select('*')
-                        .eq('id', id)
-                        .single();
-
-                    if (error) throw error;
-
-                    if (foto) {
-                        $('#fotoModalTitle').text('Editar Foto');
-                        $('#fotoId').val(foto.id);
-                        $('#fotoDescricao').val(foto.descricao);
-                        $('#fotoOrdem').val(foto.ordem_exibicao);
-                        $('#fotoCapa').prop('checked', foto.capa);
-                        $('#fotoImagemUrl').val(foto.foto_url || '');
-                        
-                        // Carrega os projetos no select
-                        const select = $('#fotoProjeto');
-                        select.empty().append('<option value="">Selecione um projeto...</option>');
-                        
-                        this.data.projetos.forEach(projeto => {
-                            select.append(`<option value="${projeto.id}" ${projeto.id === foto.projeto_id ? 'selected' : ''}>${projeto.titulo}</option>`);
-                        });
-
-                        if (foto.foto_url) {
-                            $('#fotoImagemPreview').attr('src', foto.foto_url).addClass('show');
-                        } else {
-                            $('#fotoImagemPreview').attr('src', '').removeClass('show');
-                        }
-
-                        $('#fotoModal').modal('show');
-                    }
-                } catch (error) {
-                    console.error('Erro ao carregar foto:', error);
-                    this.showErrorToast('Erro ao carregar dados da foto');
-                }
-            });
-
-            $(document).on('click', '.edit-funcionario', async (e) => {
-                const id = $(e.currentTarget).data('id');
-
-                try {
-                    const { data: funcionario, error } = await this.supabase
-                        .from('funcionarios')
-                        .select('*')
-                        .eq('id', id)
-                        .single();
-
-                    if (error) throw error;
-
-                    if (funcionario) {
-                        $('#funcionarioModalTitle').text('Editar Funcionário');
-                        $('#funcionarioId').val(funcionario.id);
-                        $('#funcionarioNome').val(funcionario.nome);
-                        $('#funcionarioCargo').val(funcionario.cargo);
-                        $('#funcionarioDepartamento').val(funcionario.departamento);
-                        $('#funcionarioFotoUrl').val(funcionario.foto_url || '');
-                        $('#funcionarioDataContratacao').val(funcionario.data_contratacao);
-                        $('#funcionarioBio').val(funcionario.bio);
-                        $('#funcionarioAtivo').prop('checked', funcionario.ativo);
-
-                        if (funcionario.foto_url) {
-                            $('#funcionarioFotoPreview').attr('src', funcionario.foto_url).addClass('show');
-                        } else {
-                            $('#funcionarioFotoPreview').attr('src', '').removeClass('show');
-                        }
-
-                        $('#funcionarioModal').modal('show');
-                    }
-                } catch (error) {
-                    console.error('Erro ao carregar funcionário:', error);
-                    this.showErrorToast('Erro ao carregar dados do funcionário');
-                }
-            });
-
-            $(document).on('click', '.edit-contato', async (e) => {
-                const id = $(e.currentTarget).data('id');
-
-                try {
-                    const { data: contato, error } = await this.supabase
-                        .from('contatos')
-                        .select('*')
-                        .eq('id', id)
-                        .single();
-
-                    if (error) throw error;
-
-                    if (contato) {
-                        // Aqui você pode implementar um modal de edição para contatos se necessário
-                        // Por enquanto, vamos apenas marcar como respondido
-                        const { error: updateError } = await this.supabase
-                            .from('contatos')
-                            .update({ status: 'Respondido' })
-                            .eq('id', id);
-
-                        if (updateError) throw updateError;
-
-                        await this.loadData();
-                        this.showSuccessToast('Contato marcado como respondido!');
-                    }
-                } catch (error) {
-                    console.error('Erro ao atualizar contato:', error);
-                    this.showErrorToast('Erro ao atualizar contato');
-                }
-            });
-        },
-
-        // Configura botões de exclusão
-        setupDeleteButtons: function () {
-            $(document).on('click', '.delete-item', (e) => {
-                const id = $(e.currentTarget).data('id');
-                const type = $(e.currentTarget).data('type');
-
-                $('#itemToDeleteId').val(id);
-                $('#itemToDeleteType').val(type);
-                $('#confirmModal').modal('show');
-            });
-
-            $('#confirmDeleteBtn').on('click', async () => {
-                const id = $('#itemToDeleteId').val();
-                const type = $('#itemToDeleteType').val();
-
-                try {
-                    let error;
-                    let successMessage = '';
-
-                    if (type === 'projeto') {
-                        // Primeiro verifica se há fotos associadas
-                        const { data: fotos, error: fotosError } = await this.supabase
-                            .from('galeria_fotos')
-                            .select('id')
-                            .eq('projeto_id', id);
-
-                        if (fotosError) throw fotosError;
-
-                        if (fotos.length > 0) {
-                            this.showErrorToast('Não é possível excluir um projeto com fotos associadas!');
-                            $('#confirmModal').modal('hide');
-                            return;
-                        }
-
-                        const { error: deleteError } = await this.supabase
-                            .from('projetos')
-                            .delete()
-                            .eq('id', id);
-                        error = deleteError;
-                        successMessage = 'Projeto excluído com sucesso!';
-                    } else if (type === 'foto') {
-                        const { error: deleteError } = await this.supabase
-                            .from('galeria_fotos')
-                            .delete()
-                            .eq('id', id);
-                        error = deleteError;
-                        successMessage = 'Foto excluída com sucesso!';
-                    } else if (type === 'funcionario') {
-                        const { error: deleteError } = await this.supabase
-                            .from('funcionarios')
-                            .delete()
-                            .eq('id', id);
-                        error = deleteError;
-                        successMessage = 'Funcionário excluído com sucesso!';
-                    } else if (type === 'contato') {
-                        const { error: deleteError } = await this.supabase
-                            .from('contatos')
-                            .delete()
-                            .eq('id', id);
-                        error = deleteError;
-                        successMessage = 'Contato excluído com sucesso!';
-                    }
-
-                    if (error) throw error;
-
-                    await this.loadData();
-                    $('#confirmModal').modal('hide');
-                    this.showSuccessToast(successMessage);
-
-                } catch (error) {
-                    console.error('Erro ao excluir:', error);
-                    this.showErrorToast('Erro ao excluir item');
-                }
-            });
-        },
-
-        // Configura botões de salvamento
-        setupSaveButtons: function () {
-            // Salvar projeto
-            $('#saveProjetoBtn').on('click', async () => {
-                const id = $('#projetoId').val();
-                const projetoData = {
-                    titulo: $('#projetoTitulo').val(),
-                    descricao: $('#projetoDescricao').val(),
-                    localizacao: $('#projetoLocalizacao').val(),
-                    data_inicio: $('#projetoDataInicio').val(),
-                    data_conclusao: $('#projetoDataConclusao').val(),
-                    area_construida: $('#projetoArea').val(),
-                    valor_contrato: $('#projetoValor').val(),
-                    status: $('#projetoStatus').val(),
-                    destaque: $('#projetoDestaque').is(':checked')
-                };
-
-                if (!projetoData.titulo || !projetoData.localizacao) {
-                    this.showErrorToast('Preencha todos os campos obrigatórios!');
-                    return;
-                }
-
-                try {
-                    let error;
-
-                    if (id) {
-                        const { error: updateError } = await this.supabase
-                            .from('projetos')
-                            .update(projetoData)
-                            .eq('id', id);
-                        error = updateError;
-                    } else {
-                        const { error: insertError } = await this.supabase
-                            .from('projetos')
-                            .insert(projetoData);
-                        error = insertError;
-                    }
-
-                    if (error) throw error;
-
-                    await this.loadData();
-                    $('#projetoModal').modal('hide');
-                    this.showSuccessToast(id ? 'Projeto atualizado com sucesso!' : 'Projeto adicionado com sucesso!');
-
-                } catch (error) {
-                    console.error('Erro ao salvar projeto:', error);
-                    this.showErrorToast('Erro ao salvar projeto');
-                }
-            });
-
-            // Salvar foto
-            $('#saveFotoBtn').on('click', async () => {
-                const id = $('#fotoId').val();
-                const fotoData = {
-                    projeto_id: $('#fotoProjeto').val(),
-                    descricao: $('#fotoDescricao').val(),
-                    foto_url: $('#fotoImagemUrl').val(),
-                    ordem_exibicao: $('#fotoOrdem').val(),
-                    capa: $('#fotoCapa').is(':checked')
-                };
-
-                if (!fotoData.projeto_id || !fotoData.foto_url) {
-                    this.showErrorToast('Preencha todos os campos obrigatórios!');
-                    return;
-                }
-
-                try {
-                    let error;
-
-                    if (id) {
-                        const { error: updateError } = await this.supabase
-                            .from('galeria_fotos')
-                            .update(fotoData)
-                            .eq('id', id);
-                        error = updateError;
-                    } else {
-                        fotoData.data_upload = new Date().toISOString();
-                        const { error: insertError } = await this.supabase
-                            .from('galeria_fotos')
-                            .insert(fotoData);
-                        error = insertError;
-                    }
-
-                    if (error) throw error;
-
-                    await this.loadData();
-                    $('#fotoModal').modal('hide');
-                    this.showSuccessToast(id ? 'Foto atualizada com sucesso!' : 'Foto adicionada com sucesso!');
-
-                } catch (error) {
-                    console.error('Erro ao salvar foto:', error);
-                    this.showErrorToast('Erro ao salvar foto');
-                }
-            });
-
-            // Salvar funcionário
-            $('#saveFuncionarioBtn').on('click', async () => {
-                const id = $('#funcionarioId').val();
-                const funcionarioData = {
-                    nome: $('#funcionarioNome').val(),
-                    cargo: $('#funcionarioCargo').val(),
-                    departamento: $('#funcionarioDepartamento').val(),
-                    foto_url: $('#funcionarioFotoUrl').val(),
-                    data_contratacao: $('#funcionarioDataContratacao').val(),
-                    bio: $('#funcionarioBio').val(),
-                    ativo: $('#funcionarioAtivo').is(':checked')
-                };
-
-                if (!funcionarioData.nome || !funcionarioData.cargo || !funcionarioData.departamento) {
-                    this.showErrorToast('Preencha todos os campos obrigatórios!');
-                    return;
-                }
-
-                try {
-                    let error;
-
-                    if (id) {
-                        const { error: updateError } = await this.supabase
-                            .from('funcionarios')
-                            .update(funcionarioData)
-                            .eq('id', id);
-                        error = updateError;
-                    } else {
-                        const { error: insertError } = await this.supabase
-                            .from('funcionarios')
-                            .insert(funcionarioData);
-                        error = insertError;
-                    }
-
-                    if (error) throw error;
-
-                    await this.loadData();
-                    $('#funcionarioModal').modal('hide');
-                    this.showSuccessToast(id ? 'Funcionário atualizado com sucesso!' : 'Funcionário adicionado com sucesso!');
-
-                } catch (error) {
-                    console.error('Erro ao salvar funcionário:', error);
-                    this.showErrorToast('Erro ao salvar funcionário');
-                }
-            });
-        },
-
-        // Configura preview de URLs de imagens
-        setupUrlPreviews: function () {
-            // Foto
-            $('#fotoImagemUrl').on('input', function () {
-                const url = $(this).val();
-                if (url) {
-                    $('#fotoImagemPreview').attr('src', url).addClass('show');
-                } else {
-                    $('#fotoImagemPreview').attr('src', '').removeClass('show');
-                }
-            });
-
-            // Funcionário
-            $('#funcionarioFotoUrl').on('input', function () {
-                const url = $(this).val();
-                if (url) {
-                    $('#funcionarioFotoPreview').attr('src', url).addClass('show');
-                } else {
-                    $('#funcionarioFotoPreview').attr('src', '').removeClass('show');
-                }
-            });
-        },
-
-        // Formata data
-        formatDate: function (dateString) {
-            if (!dateString) return '-';
-            const date = new Date(dateString);
-            return date.toLocaleDateString('pt-BR');
-        },
-
-        // Formata data e hora
-        formatDateTime: function (dateTimeString) {
-            if (!dateTimeString) return '-';
-            const date = new Date(dateTimeString);
-            return date.toLocaleString('pt-BR');
-        }
-    };
-
-    // Inicialização segura com verificação de dependências
-    $(document).ready(() => {
-        if (window.supabase && window.bootstrap && window.$) {
-            // Mostrar/ocultar senha
-            document.getElementById('togglePassword').addEventListener('click', function() {
-                const passwordInput = document.getElementById('password');
-                const icon = this.querySelector('i');
-                
-                if (passwordInput.type === 'password') {
-                    passwordInput.type = 'text';
-                    icon.classList.remove('fa-eye');
-                    icon.classList.add('fa-eye-slash');
-                } else {
-                    passwordInput.type = 'password';
-                    icon.classList.remove('fa-eye-slash');
-                    icon.classList.add('fa-eye');
-                }
-            });
-
-            // Inicializa o painel apenas após o login
-            $('#loginForm').on('submit', function (e) {
-                e.preventDefault();
-
-                const username = $('#username').val();
-                const password = $('#password').val();
-
-                if (username === 'admin' && password === 'admin123') {
-                    $('#loginModal').hide();
-                    $('#mainContent').show();
-                    AdminPanel.init();
-                } else {
-                    $('#loginError').show();
-                    $('#password').val('').focus();
-                }
-            });
-        } else {
-            console.error('Dependências não carregadas:', {
-                supabase: !!window.supabase,
-                bootstrap: !!window.bootstrap,
-                jquery: !!window.$
-            });
-            alert('Erro ao carregar as dependências. Recarregue a página.');
-        }
-    });
-    </script>
+    <script src="cadastroScript.js"></script>
 </body>
+
 </html>
